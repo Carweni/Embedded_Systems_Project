@@ -1,0 +1,21 @@
+manifest:
+  version: "0.13"
+
+  defaults:
+    remote: zephyrproject-rtos
+    revision: main
+
+  projects:
+    - name: zephyr
+      remote: zephyrproject-rtos
+      import:
+        name-allowlist:
+          - cmsis
+          - hal_stm32
+          - mbedtls
+          - mcuboot
+          - segger
+          - tinycrypt
+
+  self:
+    path: servo-uart-control

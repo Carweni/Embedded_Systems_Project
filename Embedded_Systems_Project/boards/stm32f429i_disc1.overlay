@@ -1,0 +1,39 @@
+/ {
+    aliases {
+        pwm-servo = &pwm1;
+        adc-pot = &adc1;
+    };
+};
+
+// Configuração do Timer para PWM do servo
+&timers1 {
+    status = "okay";
+    
+    pwm1: pwm {
+        status = "okay";
+        pinctrl-0 = <&tim1_ch1_pa8>;
+        pinctrl-names = "default";
+        #pwm-cells = <3>;
+    };
+};
+
+&adc1 {
+    status = "okay";
+    st,adc-prescaler = <2>;
+    pinctrl-0 = <&adc1_in1_pa1>;
+    pinctrl-names = "default";
+};
+
+&pinctrl {
+    // Pino do potenciômetro (ADC)
+    adc1_in1_pa1: adc1_in1_pa1 {
+        pinmux = <STM32_PINMUX('A', 1, ANALOG)>; // PA1 em modo analógico
+    };
+
+    // Pino do servo (PWM)
+    tim1_ch1_pa8: tim1_ch1_pa8 {
+        pinmux = <STM32_PINMUX('A', 8, AF1)>; // PA8 como TIM1_CH1 (AF1)
+    };
+};
+
+

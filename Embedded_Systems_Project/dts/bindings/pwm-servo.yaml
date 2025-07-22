@@ -1,0 +1,45 @@
+# SPDX-License-Identifier: Apache-2.0
+
+description: PWM-driven servo motor controller
+
+compatible: "pwm-servo"
+
+include: base.yaml
+
+properties:
+  pwms:
+    required: true
+    type: phandle-array
+    description: PWM specifier driving the servo motor.
+
+  min-pulse:
+    required: false
+    type: int
+    default: 1000000
+    description: |
+      Minimum pulse width in nanoseconds.
+      Default is 1000000ns (1ms) for 0 degrees.
+
+  max-pulse:
+    required: false
+    type: int  
+    default: 2000000
+    description: |
+      Maximum pulse width in nanoseconds.
+      Default is 2000000ns (2ms) for 180 degrees.
+
+  period:
+    required: false
+    type: int
+    default: 20000000
+    description: |
+      PWM period in nanoseconds.
+      Default is 20000000ns (20ms) for standard servos.
+
+  initial-angle:
+    required: false
+    type: int
+    default: 90
+    description: |
+      Initial servo angle in degrees (0-180).
+      Default is 90 degrees (center position).
